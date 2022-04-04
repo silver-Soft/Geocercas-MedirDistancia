@@ -33,10 +33,10 @@ public class Coordenadas_dentro {
                 
                 //comoparar lat & lon del usuario con lat1 &lon2 de cada area en el arraylist
                 for(int i=0; i<=listaAreas.size();i++){
-                Double latitud = model.get(i).getLat();
-                Double longitud = model.get(i).getLon();
+                //Double latitud = model.get(i).getLat();
+                //Double longitud =model.get(i).getLon();
                 System.out.println("Inicia getDistance");
-                    getDistancia(lat,lon,latitud,longitud);//getDistancia(lat,lon,19.47223,-97.92346);
+                    getDistancia(lat,lon,19.47223,-97.92346);//getDistancia(lat,lon,latitud,longitud);
                 }                
             }else{
                 System.out.println(pat.contains(lat,lon)+" Los puntos "+lat+", "+lon+" no estan dentro de la geocerca");
