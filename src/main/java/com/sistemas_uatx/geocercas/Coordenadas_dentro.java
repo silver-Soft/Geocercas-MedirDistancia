@@ -9,35 +9,44 @@ import java.util.Arrays;
  * @author Dell
  */
 public class Coordenadas_dentro {
-    public static void main(String[] args){        
-        estaEnRectoria(19.47226,-97.92359);
+    public static void main(String[] args){  
+        //Obtener coordenadas del usuario
+        Double latUsuario=0.0;
+        Double lonUsuario=0.0;
+        estaEnRectoria(19.30234,-98.2432);//<--- (latUsuario,lonUsuario);
     }
-    public static void estaEnRectoria(Double lat, Double lon){
-    ArrayList<AreasCenterTO> model = null;
-            Path2D pat= new Path2D.Double();
-                    pat.moveTo(19.47225,-97.9235);
-                    pat.lineTo(19.47221,-97.92354);
-                    pat.lineTo(19.47229,-97.92369);
-                    pat.lineTo(19.47233,-97.92365);
+    public static void estaEnRectoria(Double lat, Double lon){//Determina si el usuario esta en rectoria
+            ArrayList<AreasCenterTO> model = null;//Arraylist tipo areas
+            Path2D pat= new Path2D.Double();//Geocerca real de rectoria
+                    pat.moveTo(19.30387,-98.24124);
+                    
+                    pat.lineTo(19.30306,-98.24234);
+                    pat.lineTo(19.30247,-98.24357);
+                    pat.lineTo(19.30211,-98.2444);
+                    pat.lineTo(19.30023,-98.2439);
+                    pat.lineTo(19.29977,-98.24391);
+                    pat.lineTo(19.29905,-98.24396);
+                    pat.lineTo(19.29881,-98.24156);
                     pat.closePath();
-            if(pat.contains(lat,lon)==true){
-                ArrayList<Double> LatLong= new ArrayList<Double>(Arrays.asList(1.38, 2.56, 4.3));
-                System.out.println(pat.contains(lat,lon)+" Los puntos "+lat+", "+lon+" si estan dentro de la geocerca");
+                    
+            if(pat.contains(lat,lon)==true){//
+                System.out.println(pat.contains(lat,lon)+" Las coordenadas "+lat+", "+lon+" si estan dentro de la geocerca");
                 //Obtener JSON de coordenadas del centro de cada area
-                //Obtener los puntos de cada area de rectoria para evaluar en que area esta
-                ArrayList<AreasCenterTO> listaAreas = new ArrayList<>();
-                Double lat2=0.0;
-                Double lon2=0.0;
-                listaAreas.add(new AreasCenterTO("01","Sistemas",19.47229,-97.92345));
-                listaAreas.add(new AreasCenterTO("02","Soporte",19.47232,-97.92355));
                 
-                //comoparar lat & lon del usuario con lat1 &lon2 de cada area en el arraylist
-                for(int i=0; i<=listaAreas.size();i++){
-                //Double latitud = model.get(i).getLat();
-                //Double longitud =model.get(i).getLon();
-                System.out.println("Inicia getDistance");
-                    getDistancia(lat,lon,19.47223,-97.92346);//getDistancia(lat,lon,latitud,longitud);
-                }                
+                //Obtener los puntos de cada area de rectoria para evaluar en que area esta
+                ArrayList<AreasCenterTO> listaAreas = new ArrayList<>();              
+                listaAreas.add(new AreasCenterTO("01","Sistemas",19.29914,-98.24202));
+                listaAreas.add(new AreasCenterTO("02","Soporte",19.30215,-98.2429));
+                
+                for (int i = 0; i < listaAreas.size(); i++) {                        
+                    //System.out.println("lat: "+listaAreas.get(i).getLat()+"lon: "+listaAreas.get(i).getLon());                   
+                    Double latitud = listaAreas.get(i).getLat();
+                    Double longitud =listaAreas.get(i).getLon();
+                    System.out.println("Distancia entre los puntos:");
+                    //lat & lon = ubicacion del usuario
+                    //latitud & longitud = coordenadas del area obtenidas del servicio
+                    getDistancia(lat,lon,latitud,longitud);
+                }                                               
             }else{
                 System.out.println(pat.contains(lat,lon)+" Los puntos "+lat+", "+lon+" no estan dentro de la geocerca");
             }
