@@ -13,20 +13,20 @@ public class Coordenadas_dentro {
         //Obtener coordenadas del usuario
         Double latUsuario=0.0;
         Double lonUsuario=0.0;
-        estaEnRectoria(19.30234,-98.2432);//<--- (latUsuario,lonUsuario);
+        estaEnRectoria(19.30297,-98.24133);//<--- (latUsuario,lonUsuario);
     }
     public static void estaEnRectoria(Double lat, Double lon){//Determina si el usuario esta en rectoria
             ArrayList<AreasCenterTO> model = null;//Arraylist tipo areas
             Path2D pat= new Path2D.Double();//Geocerca real de rectoria
-                    pat.moveTo(19.30387,-98.24124);
+                    pat.moveTo(19.30396,-98.24119);//19.30387,-98.24124);//LAS CHIDAS
                     
-                    pat.lineTo(19.30306,-98.24234);
-                    pat.lineTo(19.30247,-98.24357);
-                    pat.lineTo(19.30211,-98.2444);
-                    pat.lineTo(19.30023,-98.2439);
-                    pat.lineTo(19.29977,-98.24391);
-                    pat.lineTo(19.29905,-98.24396);
-                    pat.lineTo(19.29881,-98.24156);
+                    pat.lineTo(19.30313,-98.24244);//19.30306,-98.24234);
+                    pat.lineTo(19.30256,-98.24363);//19.30247,-98.24357);
+                    pat.lineTo(19.3022,-98.24442);//19.30211,-98.2444);
+                    pat.lineTo(19.30023,-98.24409);//19.30023,-98.2439);
+                    pat.lineTo(19.29976,-98.24407);//19.29977,-98.24391);
+                    pat.lineTo(19.2989,-98.2439);//19.29905,-98.24396);
+                    pat.lineTo(19.29889,-98.24135);//19.29881,-98.24156);
                     pat.closePath();
                     
             if(pat.contains(lat,lon)==true){//
